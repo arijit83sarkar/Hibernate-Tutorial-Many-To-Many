@@ -10,10 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class AddCourseForStudentDemo {
-
+public class DeleteStudentDemo {
     public static void main(String[] args) throws Exception {
-        System.out.println(">>>>>>> Welcome Many-To-Many - Add Course For Student Demo!!! <<<<<<<<");
+        System.out.println(">>>>>>> Welcome Many-To-Many - Delete Student Demo!!! <<<<<<<<");
         SessionFactory sessionFactory = null;
         Session session = null;
 
@@ -25,21 +24,12 @@ public class AddCourseForStudentDemo {
             session.beginTransaction();
 
             // get a course
-            int id = 10;
+            int id = 2;
             Student student = session.get(Student.class, id);
-            System.out.println("\nCourse Details :: " + student.getCourses());
+            System.out.println("Student Details :: " + student);
 
-            // create more courses
-            Course course1 = new Course("Rubik's Cube - How To Speed Cube");
-            Course course2 = new Course("Atari 2600 - Game Developmment");
-
-            // add student to courses
-            course1.addStudent(student);
-            course2.addStudent(student);
-
-            // save the courses
-            session.save(course1);
-            session.save(course2);
+            // delete the course
+            session.delete(student);
 
             session.getTransaction().commit();
             System.out.println(">>> Done <<<");
